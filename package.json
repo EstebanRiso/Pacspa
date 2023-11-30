@@ -1,0 +1,17 @@
+{
+  "name": "pacspa",
+  "version": "1.0.0",
+  "description": "proyecto encargado de automatizar correos electronicos dependiendo del rut ingresado y dar por hecho un envio facil",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Esteban Risopatrón",
+  "license": "ISC",
+  "dependencies": {
+    "electron": "^25.3.1",
+    "electron-packager": "^17.1.1",
+    "jspdf": "^2.5.1"
+  }
+}

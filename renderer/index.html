@@ -1,0 +1,144 @@
+<html>
+    <header>
+        <title>Pacspa</title>
+        <link rel="stylesheet" href="styles.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js" integrity="sha512-GsLlZN/3F2ErC5ifS5QtgpiJtWd43JWSuIgh7mbzZ8zBps+dvLusV+eNQATqgA/HdeKFVgA5v3S/cIrLF7QnIg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    </header>
+    <body>
+        <div id="contenido" class="mainContainer">
+                
+                <div class="division1">
+                    <img src="logo.png"/>
+                </div>
+
+                <div class="division2">
+                    <div class="item1">
+                        <p>77.779.038-2</p>
+                    </div>
+                    <div class="item2">
+                        <p>Concepción<br>
+                        O'Higgins 680 Of 214<br>
+                        +569 7657 2752</p>
+                    </div>
+                   
+                </div>
+
+
+                <div class="division3">
+                    <p>Presupuesto N° <input id="NumeroPresupuesto" style="width:40px" class="inputN" oninput="contiene()" type="number"> </p>
+                </div>
+
+                <div class="division4">
+                  
+                    <p> Nombre(s):<div id="nombre" style="background-color: red;">
+                                    <input oninput="this.size = this.value.length;console.log('el this.value length es: '+this.value.length);onInputNombre()" id="Nombre" class="inputData" type="text"></br>
+                                  </div>
+                        Rut(s):<div id="ruts">
+                                    <input oninput="this.size = this.value.length" id=rut onchange="autocompletarYLimpiarRut()" class="inputData" type="text"></br>
+                               </div>
+                        Dirección(es):<div id="direcciones">
+                                           <input oninput="this.size = this.value.length" class="inputData"  type="text"></br>
+                                      </div>
+                        Correo(s):<div id="correos">
+                                     <input oninput="this.size = this.value.length" class="inputData"  type="text"></br>
+                                  </div>
+                        Nombre del Proyecto:<div>
+                                                <input oninput="this.size = this.value.length" class="inputData" type="text">
+                                            </div>
+                    </p>
+                </div>
+                    
+
+                <table id="tablaDescripcion" class="tabla">
+                  <thead class="headerTabla">
+                      <tr>
+                          <th>Descripción trabajo a realizar</th>
+                      </tr>
+                  </thead>
+                  <tbody id="BodyDescripcion">
+                      <tr>
+                          <td>
+                              <p><span class="Descripcion" role="textbox" contenteditable></span></p>
+                          </td>
+                          <script>
+                            // Obtén una referencia al elemento de entrada
+                            const inputElement = document.getElementById('Descripcion');
+                            
+                            // Agrega un controlador de eventos al evento oninput
+                            inputElement.addEventListener('input', function() {
+                              const valor = inputElement.value;
+                              const anchoRequerido = inputElement.scrollWidth;
+                              console.log('Ancho requerido para el texto:', anchoRequerido, 'px');
+                              // Puedes realizar otras acciones aquí mientras el usuario escribe
+                            });
+                          </script>
+                      </tr> 
+                  </tbody>
+                </table>
+                
+                <br>
+
+
+                <table id="tablaCosto" class="tabla">
+                    <thead class="headerTabla">
+                        <tr>
+                            <th style="width: 200px;">Material</th>
+                            <th style="width: 100px;">Costo Unitario</th>
+                            <th style="width: 100px;">Cantidad</th>
+                            <th style="width: 100px;">Medida</th>
+                            <th style="width: 100px;">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaModificar">
+                        <tr>
+                            <td ><input class="inparFila" autocomplete="nope" type="text"></td>
+                            <td ><input class="inparFila" autocomplete="nope" type="number" oninput="sumarValores()"></td>
+                            <td ><input class="inparFila" type="number" oninput="sumarValores()"></td>
+                            <td ><select class="inparFila" name="metrica" id="cars">
+                                  <option value="m3">m&#179</option>
+                                  <option value="m2">m&#178</option>
+                                  <option value="m.l.">m.l.</option>
+                            </select></td>
+                            <td style="text-align: center;font-family: Arial;" id="valorTotal"></td>
+                        </tr> 
+                    </tbody>
+                </table>
+
+            </div>
+
+
+    
+        <script type="text/javascript" src="boton.js"></script>
+        <script type="text/javascript" src="pdf.js"></script>
+        <script type="text/javascript" src="oninput.js"></script>
+
+        <button  title="Generar documento PDF" class="boton1" onclick="generarPDF()"></button>
+        <button  title="Agregar una fila" class="boton2" onclick="agregarFila()"></button>
+        <button  title="Quitar una fila"  class="boton3" onclick="eliminarUltimaFila()"></button>
+        <button  title="Enviar por Correo"  class="boton4" onclick="activarModal()"></button>
+        
+       
+
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+              <span class="close" onclick="desactivarModal()">&times;</span>
+              <p>Se enviará a los siguientes correos:</p>
+              <p id="correos"></p>
+
+              <p>
+                <input id="mensaje" class="mensaje" type="text" value="les traigo el presente correo enviándoles a ustedes el pdf del presupuesto.">
+              </p>
+
+              <button onclick="EnviarPDF()">ENVIAR</button>
+
+            </div>
+          
+        </div>
+
+
+        <script src="https://smtpjs.com/v3/smtp.js"></script>
+        
+    </body>
+</html>
